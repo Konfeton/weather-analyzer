@@ -31,7 +31,7 @@ import java.util.Map;
         "gust_mph",
         "gust_kph"
 })
-public class Current {
+public class CurrentDto {
     @JsonProperty("last_updated_epoch")
     private Integer lastUpdatedEpoch;
     @JsonProperty("last_updated")
@@ -43,7 +43,7 @@ public class Current {
     @JsonProperty("is_day")
     private Integer isDay;
     @JsonProperty("condition")
-    private Condition condition;
+    private ConditionDto condition;
     @JsonProperty("wind_mph")
     private Double windMph;
     @JsonProperty("wind_kph")
@@ -132,12 +132,12 @@ public class Current {
     }
 
     @JsonProperty("condition")
-    public Condition getCondition() {
+    public ConditionDto getCondition() {
         return condition;
     }
 
     @JsonProperty("condition")
-    public void setCondition(Condition condition) {
+    public void setCondition(ConditionDto condition) {
         this.condition = condition;
     }
 

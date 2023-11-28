@@ -16,8 +16,7 @@ import java.util.Map;
         "localtime_epoch",
         "localtime"
 })
-public class Location {
-
+public class LocationDto {
     @JsonProperty("name")
     private String name;
     @JsonProperty("region")

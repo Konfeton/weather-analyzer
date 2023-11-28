@@ -18,31 +18,30 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
         "current"
 })
 public class WeatherDto {
-
     @JsonProperty("location")
-    private Location location;
+    private LocationDto location;
     @JsonProperty("current")
-    private Current current;
+    private CurrentDto current;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
 
     @JsonProperty("location")
-    public Location getLocation() {
+    public LocationDto getLocation() {
         return location;
     }
 
     @JsonProperty("location")
-    public void setLocation(Location location) {
+    public void setLocation(LocationDto location) {
         this.location = location;
     }
 
     @JsonProperty("current")
-    public Current getCurrent() {
+    public CurrentDto getCurrent() {
         return current;
     }
 
     @JsonProperty("current")
-    public void setCurrent(Current current) {
+    public void setCurrent(CurrentDto current) {
         this.current = current;
     }
 

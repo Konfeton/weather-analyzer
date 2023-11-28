@@ -11,8 +11,7 @@ import java.util.Map;
         "icon",
         "code"
 })
-public class Condition {
-
+public class ConditionDto {
     @JsonProperty("text")
     private String text;
     @JsonProperty("icon")
