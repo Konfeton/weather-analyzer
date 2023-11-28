@@ -1,5 +1,7 @@
 package com.example.weatheranalyzer.service.utils;
 
+import com.example.weatheranalyzer.dto.LocationResponseDto;
+import com.example.weatheranalyzer.dto.WeatherResponseDto;
 import com.example.weatheranalyzer.dto.api.LocationDto;
 import com.example.weatheranalyzer.dto.api.WeatherDto;
 import com.example.weatheranalyzer.model.Location;
@@ -33,5 +35,26 @@ public class WeatherConverter {
         return location;
     }
 
-    
+    public static WeatherResponseDto fromEntityToWeatherResponseDto(Weather weather) {
+        WeatherResponseDto weatherResponseDto = new WeatherResponseDto();
+        weatherResponseDto.setTemperature(weather.getTemperature());
+        weatherResponseDto.setWind(weather.getWind());
+        weatherResponseDto.setPressure(weather.getPressure());
+        weatherResponseDto.setHumidity(weather.getHumidity());
+        weatherResponseDto.setCondition(weather.getCondition());
+        return weatherResponseDto;
+    }
+
+    public static LocationResponseDto fromEntityToLocationResponseDto(Location location) {
+        LocationResponseDto locationResponseDto = new LocationResponseDto();
+        locationResponseDto.setName(location.getName());
+        locationResponseDto.setRegion(location.getRegion());
+        locationResponseDto.setCountry(location.getCountry());
+        locationResponseDto.setLat(location.getLat());
+        locationResponseDto.setLon(location.getLon());
+        locationResponseDto.setTzId(location.getTzId());
+        locationResponseDto.setLocalTimeEpoch(location.getLocalTimeEpoch());
+        locationResponseDto.setLocalTime(location.getLocalTime());
+        return locationResponseDto;
+    }
 }
