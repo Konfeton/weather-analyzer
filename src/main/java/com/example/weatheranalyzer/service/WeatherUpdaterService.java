@@ -41,7 +41,8 @@ public class WeatherUpdaterService {
         Weather weather = WeatherConverter.fromWeatherDtoToEntity(weatherDto);
         Location location = WeatherConverter.fromLocationDtoToEntity(weatherDto.getLocation());
         weather.setLocation(location);
-
+        locationService.save(location);
+        weatherService.save(weather);
     }
 
 
