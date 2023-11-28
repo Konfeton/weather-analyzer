@@ -1,70 +1,29 @@
 package com.example.weatheranalyzer.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
+@Table(name = "Weather")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Weather {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private Double temperature;
     private Double wind;
     private Double pressure;
     private Integer humidity;
+    @Column(name = "weather_condition")
     private String condition;
     @OneToOne
+    @JoinColumn(name = "location_id", referencedColumnName = "id")
     private Location location;
 
-    public Weather() {
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public Double getWind() {
-        return wind;
-    }
-
-    public void setWind(Double wind) {
-        this.wind = wind;
-    }
-
-    public Double getPressure() {
-        return pressure;
-    }
-
-    public void setPressure(Double pressure) {
-        this.pressure = pressure;
-    }
-
-    public Integer getHumidity() {
-        return humidity;
-    }
-
-    public void setHumidity(Integer humidity) {
-        this.humidity = humidity;
-    }
-
-    public String getCondition() {
-        return condition;
-    }
-
-    public void setCondition(String condition) {
-        this.condition = condition;
-    }
-
-    public Location getLocation() {
-        return location;
-    }
-
-    public void setLocation(Location location) {
-        this.location = location;
-    }
 }
