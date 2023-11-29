@@ -26,9 +26,9 @@ public class WeatherConverter {
         location.setName(locationDto.getName());
         location.setRegion(locationDto.getRegion());
         location.setCountry(locationDto.getCountry());
-        location.setLat(locationDto.getLat());
-        location.setLon(locationDto.getLon());
-        location.setTzId(locationDto.getTzId());
+        location.setLatitude(locationDto.getLat());
+        location.setLongitude(locationDto.getLon());
+        location.setTimeZoneName(locationDto.getTzId());
         location.setLocalTimeEpoch(locationDto.getLocaltimeEpoch());
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         location.setLocalDateTime(LocalDateTime.parse(locationDto.getLocaltime(), formatter));
@@ -50,9 +50,9 @@ public class WeatherConverter {
         locationResponseDto.setName(location.getName());
         locationResponseDto.setRegion(location.getRegion());
         locationResponseDto.setCountry(location.getCountry());
-        locationResponseDto.setLat(location.getLat());
-        locationResponseDto.setLon(location.getLon());
-        locationResponseDto.setTzId(location.getTzId());
+        locationResponseDto.setLat(location.getLatitude());
+        locationResponseDto.setLon(location.getLongitude());
+        locationResponseDto.setTzId(location.getTimeZoneName());
         locationResponseDto.setLocalTimeEpoch(location.getLocalTimeEpoch());
         locationResponseDto.setLocalTime(location.getLocalDateTime());
         return locationResponseDto;
