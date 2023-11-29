@@ -25,5 +25,5 @@ public class Location {
     private Double lon;
     private String tzId;
     private Integer localTimeEpoch;
-    private LocalDateTime localTime;
+    private LocalDateTime localDateTime;
 }
