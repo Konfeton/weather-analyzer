@@ -9,5 +9,5 @@ import java.util.List;
 
 @Repository
 public interface LocationRepository extends JpaRepository<Location, Long> {
-    List<Location> findByLocalTimeBetween(LocalDateTime from, LocalDateTime to);
+    List<Location> findByLocalDateTimeBetween(LocalDateTime from, LocalDateTime to);
 }

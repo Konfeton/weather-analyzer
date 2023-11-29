@@ -21,7 +21,7 @@ public class LocationService {
     }
 
     public List<Location> findWeatherBetweenDates(LocalDate from, LocalDate to) {
-        List<Location> locations = locationRepository.findByLocalTimeBetween(from.atStartOfDay(), to.atTime(LocalTime.MAX));
+        List<Location> locations = locationRepository.findByLocalDateTimeBetween(from.atStartOfDay(), to.atTime(LocalTime.MAX));
         return locations;
     }
 }
