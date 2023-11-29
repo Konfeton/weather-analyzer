@@ -1,6 +1,8 @@
 package com.example.weatheranalyzer.controller;
 
 import com.example.weatheranalyzer.dto.WeatherResponseDto;
+import com.example.weatheranalyzer.exception.DateOutOfBoundsException;
+import com.example.weatheranalyzer.exception.WrongDateIntervalException;
 import com.example.weatheranalyzer.service.WeatherService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,7 +29,12 @@ public class WeatherController {
     @ResponseStatus(HttpStatus.OK)
     public double getAvgTemperature(@RequestParam LocalDate from,
                                     @RequestParam LocalDate to) {
-
+        if (to.isAfter(LocalDate.now())) {
+            throw new DateOutOfBoundsException("Date should be equals or less than " + LocalDate.now());
+        }
+        if (from.isAfter(to)) {
+            throw new WrongDateIntervalException("Invalid date interval from: " + from + " to " + to);
+        }
         return weatherService.getAverageTemperatureBetweenDates(from, to);
     }
 }

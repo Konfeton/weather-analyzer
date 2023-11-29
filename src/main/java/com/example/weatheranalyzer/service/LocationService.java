@@ -1,5 +1,6 @@
 package com.example.weatheranalyzer.service;
 
+import com.example.weatheranalyzer.exception.NoElementsException;
 import com.example.weatheranalyzer.model.Location;
 import com.example.weatheranalyzer.repository.LocationRepository;
 import org.springframework.stereotype.Service;
@@ -20,8 +21,11 @@ public class LocationService {
         locationRepository.save(location);
     }
 
-    public List<Location> findWeatherBetweenDates(LocalDate from, LocalDate to) {
+    public List<Location> findWeatherBetweenDates(LocalDate from, LocalDate to) throws NoElementsException {
         List<Location> locations = locationRepository.findByLocalDateTimeBetween(from.atStartOfDay(), to.atTime(LocalTime.MAX));
+        if (locations.isEmpty())
+            throw new NoElementsException("No records in range: " + from + " to " + to);
+
         return locations;
     }
 }
