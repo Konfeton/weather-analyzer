@@ -4,6 +4,10 @@ import com.example.weatheranalyzer.model.Location;
 import com.example.weatheranalyzer.repository.LocationRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.List;
+
 @Service
 public class LocationService {
     private final LocationRepository locationRepository;
@@ -14,5 +18,10 @@ public class LocationService {
 
     public void save(Location location) {
         locationRepository.save(location);
+    }
+
+    public List<Location> findWeatherBetweenDates(LocalDate from, LocalDate to) {
+        List<Location> locations = locationRepository.findByLocalTimeBetween(from.atStartOfDay(), to.atTime(LocalTime.MAX));
+        return locations;
     }
 }
