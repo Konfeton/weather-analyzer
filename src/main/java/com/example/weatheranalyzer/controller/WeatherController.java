@@ -1,5 +1,6 @@
 package com.example.weatheranalyzer.controller;
 
+import com.example.weatheranalyzer.dto.AverageWeatherResponseDto;
 import com.example.weatheranalyzer.dto.WeatherResponseDto;
 import com.example.weatheranalyzer.exception.DateOutOfBoundsException;
 import com.example.weatheranalyzer.exception.WrongDateIntervalException;
@@ -25,16 +26,16 @@ public class WeatherController {
         return weatherService.getCurrentWeather();
     }
 
-    @GetMapping("/avg-temp")
+    @GetMapping("/avg-weather")
     @ResponseStatus(HttpStatus.OK)
-    public double getAvgTemperature(@RequestParam LocalDate from,
-                                    @RequestParam LocalDate to) {
+    public AverageWeatherResponseDto getAvgTemperature(@RequestParam LocalDate from,
+                                                       @RequestParam LocalDate to) {
         if (to.isAfter(LocalDate.now())) {
             throw new DateOutOfBoundsException("Date should be equals or less than " + LocalDate.now());
         }
         if (from.isAfter(to)) {
             throw new WrongDateIntervalException("Invalid date interval from: " + from + " to " + to);
         }
-        return weatherService.getAverageTemperatureBetweenDates(from, to);
+        return weatherService.getAverageWeatherBetweenDates(from, to);
     }
 }

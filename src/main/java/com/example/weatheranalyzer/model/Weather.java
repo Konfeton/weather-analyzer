@@ -30,4 +30,10 @@ public class Weather {
     @JoinColumn(name = "location_id", referencedColumnName = "id")
     private Location location;
 
+    public Weather(Double temperature, Double wind, Double pressure, Integer humidity) {
+        this.temperature = temperature;
+        this.wind = wind;
+        this.pressure = pressure;
+        this.humidity = humidity;
+    }
 }

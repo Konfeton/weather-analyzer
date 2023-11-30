@@ -11,10 +11,11 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class WeatherConverter {
+    private static final int CONVERSION_COEFFICIENT = 1609;
     public static Weather fromWeatherDtoToEntity(WeatherDto weatherDto) {
         Weather weather = new Weather();
         weather.setTemperature(weatherDto.getCurrent().getTempC());
-        weather.setWind(weatherDto.getCurrent().getWindMph());
+        weather.setWind(weatherDto.getCurrent().getWindMph() * CONVERSION_COEFFICIENT);
         weather.setPressure(weatherDto.getCurrent().getPressureMb());
         weather.setHumidity(weatherDto.getCurrent().getHumidity());
         weather.setCondition(weatherDto.getCurrent().getCondition().getText());
