@@ -1,12 +1,14 @@
 package com.example.weatheranalyzer.dto;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
 @Setter
 @Getter
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode
 public class LocationResponseDto {
     private String name;
     private String region;
