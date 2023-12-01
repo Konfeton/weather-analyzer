@@ -7,6 +7,7 @@ import com.example.weatheranalyzer.model.Location;
 import com.example.weatheranalyzer.model.Weather;
 import com.example.weatheranalyzer.repository.WeatherRepository;
 import com.example.weatheranalyzer.service.utils.WeatherConverter;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -15,6 +16,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
+@Slf4j
 public class WeatherService {
     private final WeatherRepository weatherRepository;
     private final LocationService locationService;
@@ -31,10 +33,13 @@ public class WeatherService {
     }
 
     public WeatherResponseDto getCurrentWeather() {
+        log.debug("Getting last inserted data");
         Weather weatherFromDb = weatherRepository.findFirstByOrderByIdDesc();
+        log.debug("Converting to dto");
         WeatherResponseDto weatherResponseDto = WeatherConverter.fromEntityToWeatherResponseDto(weatherFromDb);
         LocationResponseDto location = WeatherConverter.fromEntityToLocationResponseDto(weatherFromDb.getLocation());
         weatherResponseDto.setLocation(location);
+        log.trace("Converted: {}", weatherResponseDto);
         return weatherResponseDto;
     }
 
@@ -42,8 +47,9 @@ public class WeatherService {
         List<Location> locations = locationService.findWeatherBetweenDates(from, to);
         List<Weather> listOfWeather = weatherRepository.findByLocationIn(locations);
 
+        log.debug("Collecting data by days");
         Map<LocalDate, List<Weather>> collectedByDate = listOfWeather.stream().collect(Collectors.groupingBy(item -> item.getLocation().getLocalDateTime().toLocalDate()));
-
+        log.debug("Data by days: {}", collectedByDate);
         return weatherStatisticsCalculator.calculate(collectedByDate);
     }
 
