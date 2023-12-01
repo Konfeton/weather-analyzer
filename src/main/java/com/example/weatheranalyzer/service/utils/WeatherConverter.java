@@ -31,7 +31,7 @@ public class WeatherConverter {
         location.setLongitude(locationDto.getLon());
         location.setTimeZoneName(locationDto.getTzId());
         location.setLocalTimeEpoch(locationDto.getLocaltimeEpoch());
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd H:mm");
         location.setLocalDateTime(LocalDateTime.parse(locationDto.getLocaltime(), formatter));
         return location;
     }
