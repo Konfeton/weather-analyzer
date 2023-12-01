@@ -20,12 +20,10 @@ import java.util.stream.Collectors;
 public class WeatherService {
     private final WeatherRepository weatherRepository;
     private final LocationService locationService;
-    private final WeatherStatisticsCalculator weatherStatisticsCalculator;
 
-    public WeatherService(WeatherRepository weatherRepository, LocationService locationService, WeatherStatisticsCalculator weatherStatisticsCalculator) {
+    public WeatherService(WeatherRepository weatherRepository, LocationService locationService) {
         this.weatherRepository = weatherRepository;
         this.locationService = locationService;
-        this.weatherStatisticsCalculator = weatherStatisticsCalculator;
     }
 
     public Weather save(Weather weather) {
@@ -50,7 +48,7 @@ public class WeatherService {
         log.debug("Collecting data by days");
         Map<LocalDate, List<Weather>> collectedByDate = listOfWeather.stream().collect(Collectors.groupingBy(item -> item.getLocation().getLocalDateTime().toLocalDate()));
         log.debug("Data by days: {}", collectedByDate);
-        return weatherStatisticsCalculator.calculate(collectedByDate);
+        return WeatherStatisticsCalculator.calculate(collectedByDate);
     }
 
 }

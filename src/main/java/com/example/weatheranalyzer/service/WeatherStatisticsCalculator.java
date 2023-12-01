@@ -13,14 +13,14 @@ import java.util.stream.Collectors;
 @Component
 public class WeatherStatisticsCalculator {
 
-    private double calculateAverage(List<Weather> weatherList, ToDoubleFunction<Weather> extractor) {
+    private static double calculateAverage(List<Weather> weatherList, ToDoubleFunction<Weather> extractor) {
         return weatherList.stream()
                 .mapToDouble(extractor)
                 .average()
                 .orElse(0.0);
     }
 
-    private Map<LocalDate, Weather> calculateAverageByDays(Map<LocalDate, List<Weather>> weatherMap) {
+    private static Map<LocalDate, Weather> calculateAverageByDays(Map<LocalDate, List<Weather>> weatherMap) {
         return weatherMap.entrySet().stream()
                 .collect(Collectors.toMap(
                         Map.Entry::getKey,
@@ -33,7 +33,7 @@ public class WeatherStatisticsCalculator {
                 ));
     }
 
-    public AverageWeatherResponseDto calculate(Map<LocalDate, List<Weather>> weatherMap) {
+    public static AverageWeatherResponseDto calculate(Map<LocalDate, List<Weather>> weatherMap) {
         Map<LocalDate, Weather> averageByDays = calculateAverageByDays(weatherMap);
         List<Weather> weatherList = averageByDays.values().stream().collect(Collectors.toList());
         return new AverageWeatherResponseDto(
