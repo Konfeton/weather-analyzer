@@ -28,8 +28,8 @@ public class WeatherService {
         this.weatherStatisticsCalculator = weatherStatisticsCalculator;
     }
 
-    public void save(Weather weather) {
-        weatherRepository.save(weather);
+    public Weather save(Weather weather) {
+        return weatherRepository.save(weather);
     }
 
     public WeatherResponseDto getCurrentWeather() {
