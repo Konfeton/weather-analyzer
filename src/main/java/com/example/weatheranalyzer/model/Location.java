@@ -34,4 +34,34 @@ public class Location {
     private Integer localTimeEpoch;
     @Column(name = "local_date_time")
     private LocalDateTime localDateTime;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Location location)) return false;
+
+        if (!getId().equals(location.getId())) return false;
+        if (!getName().equals(location.getName())) return false;
+        if (!getRegion().equals(location.getRegion())) return false;
+        if (!getCountry().equals(location.getCountry())) return false;
+        if (!getLatitude().equals(location.getLatitude())) return false;
+        if (!getLongitude().equals(location.getLongitude())) return false;
+        if (!getTimeZoneName().equals(location.getTimeZoneName())) return false;
+        if (!getLocalTimeEpoch().equals(location.getLocalTimeEpoch())) return false;
+        return getLocalDateTime().equals(location.getLocalDateTime());
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getId().hashCode();
+        result = 31 * result + getName().hashCode();
+        result = 31 * result + getRegion().hashCode();
+        result = 31 * result + getCountry().hashCode();
+        result = 31 * result + getLatitude().hashCode();
+        result = 31 * result + getLongitude().hashCode();
+        result = 31 * result + getTimeZoneName().hashCode();
+        result = 31 * result + getLocalTimeEpoch().hashCode();
+        result = 31 * result + getLocalDateTime().hashCode();
+        return result;
+    }
 }

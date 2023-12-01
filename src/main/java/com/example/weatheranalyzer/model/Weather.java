@@ -36,4 +36,28 @@ public class Weather {
         this.pressure = pressure;
         this.humidity = humidity;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Weather weather)) return false;
+
+        if (!getId().equals(weather.getId())) return false;
+        if (!getTemperature().equals(weather.getTemperature())) return false;
+        if (!getWind().equals(weather.getWind())) return false;
+        if (!getPressure().equals(weather.getPressure())) return false;
+        if (!getHumidity().equals(weather.getHumidity())) return false;
+        return getCondition().equals(weather.getCondition());
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getId().hashCode();
+        result = 31 * result + getTemperature().hashCode();
+        result = 31 * result + getWind().hashCode();
+        result = 31 * result + getPressure().hashCode();
+        result = 31 * result + getHumidity().hashCode();
+        result = 31 * result + getCondition().hashCode();
+        return result;
+    }
 }
