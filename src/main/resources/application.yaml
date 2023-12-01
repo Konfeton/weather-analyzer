@@ -4,7 +4,21 @@ spring:
     username: root
     password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
+
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
+    defer-datasource-initialization: true
+  sql:
+    init:
+      mode: always
 
+#  jpa:
+#    hibernate:
+#      ddl-auto: update
+
+
+cron:
+  everyMinute: "0 0/1 * * * ?"
+  everyFiveMinutes: "0 0/5 * * * ?"
+  everyHour: "0 0 0/1 * * ? "
