@@ -1,8 +1,8 @@
 package com.example.weatheranalyzer.exception.handler;
 
 import com.example.weatheranalyzer.exception.DateOutOfBoundsException;
+import com.example.weatheranalyzer.exception.InvalidDateIntervalException;
 import com.example.weatheranalyzer.exception.NoElementsException;
-import com.example.weatheranalyzer.exception.WrongDateIntervalException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -21,8 +21,8 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>("Invalid date format: " + ex.getValue(), HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler(WrongDateIntervalException.class)
-    public ResponseEntity<String> handleWrongDateIntervalException(WrongDateIntervalException ex) {
+    @ExceptionHandler(InvalidDateIntervalException.class)
+    public ResponseEntity<String> handleWrongDateIntervalException(InvalidDateIntervalException ex) {
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
     }
 
