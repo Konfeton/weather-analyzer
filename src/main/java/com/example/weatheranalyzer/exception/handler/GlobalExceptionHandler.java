@@ -1,4 +1,4 @@
-package com.example.weatheranalyzer.exception.handlers;
+package com.example.weatheranalyzer.exception.handler;
 
 import com.example.weatheranalyzer.exception.DateOutOfBoundsException;
 import com.example.weatheranalyzer.exception.NoElementsException;
